@@ -13,5 +13,7 @@ jobs:
 
       - name: Create docker image
         run: docker build -t gh-actions-test . 
+      - name: Print hello/docker run
+      - run: docker run gh-actions-test
       
 
