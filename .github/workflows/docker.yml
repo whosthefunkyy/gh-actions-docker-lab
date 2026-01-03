@@ -13,7 +13,12 @@ jobs:
 
       - name: Create docker image
         run: docker build -t gh-actions-test . 
+
       - name: Print hello/docker run
-        run: docker run gh-actions-test
-      
+        run: |
+          docker run -d -p 8080:8080 --name go-server gh-actions-test
+          sleep 3
+          docker logs go-server
+
+    
 
