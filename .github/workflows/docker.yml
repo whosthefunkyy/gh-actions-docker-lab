@@ -2,23 +2,23 @@ name: Docker test
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
+
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: ubunte-latets
 
     steps:
-      - name: Clone repo1
-        uses: actions/checkout@v4
+     - name: Clone repo
+       uses: actions/checkout@v4
 
-      - name: Create docker image
-        run: docker build -t gh-actions-test . 
+     - name: Docker image
+       run: docker build -t gh-actions
 
-      - name: Print hello/docker run
-        run: |
-          docker run -d -p 8080:8080 --name go-server gh-actions-test
-          sleep 3
-          docker logs go-server
 
-    
+     - name: Create server
+       run: |
+        docker run -d -p 8080:8080 --name go-server gh-actions
+        sleep 3
+        docker logs go-server
 
