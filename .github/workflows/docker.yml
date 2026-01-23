@@ -20,9 +20,9 @@ jobs:
 
       - name: Health check
         run: |
-          curl http://localhost:8080
+          curl -f http://localhost:8080
 
       - name: Server logs
-        run: docker logs 
+        run: docker logs  go-server
       - name: Server stop
-        run: docker rm go-server
+        run: docker rm -f go-server
