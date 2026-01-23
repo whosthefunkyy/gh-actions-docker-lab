@@ -6,7 +6,7 @@ on:
 
 jobs:
   docker:
-    runs-on: ubunte-latets
+    runs-on: ubuntu-latest
 
     steps:
      - name: Clone repo
