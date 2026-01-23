@@ -1,3 +1,3 @@
-module gh-actions-test
+module gh-actions
 
 go 1.21
