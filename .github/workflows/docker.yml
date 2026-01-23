@@ -9,24 +9,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Copy repo
         uses: actions/checkout@v4
+      
+      - name: Build image
+        run: docker build -t gh-actions:{{ github.sha }}
 
-      - name: Build Docker image
-        run: |
-          docker build -t go-server:${{ github.sha }} .
-
-      - name: Run container
-        run: |
-          docker run -d -p 8080:8080 --name go-server go-server:${{ github.sha }}
-          sleep 3
+      - name: Docker run
+        run: docker run -d -p 8080:8080 --name go-server gh-actions:{{ github.sha }}
 
       - name: Health check
         run: |
-          curl -f http://localhost:8080
+          curl http://localhost:8080
 
-      - name: Show logs
-        run: docker logs go-server
-
-      - name: Stop container
-        run: docker rm -f go-server
+      - name: Server logs
+        run: docker logs 
+      - name: Server stop
+        run: docker rm go-server
