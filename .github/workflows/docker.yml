@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Build image
-        run: docker build -t gh-actions:{{ github.sha }}
+        run: docker build -t gh-actions:{{ github.sha }} .
 
       - name: Docker run
         run: docker run -d -p 8080:8080 --name go-server gh-actions:{{ github.sha }}
